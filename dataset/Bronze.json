@@ -1,5 +1,5 @@
 {
-	"name": "Stage",
+	"name": "Bronze",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "staging",
+				"folderPath": "bronze",
 				"fileSystem": "test"
 			},
 			"compressionCodec": "snappy"
