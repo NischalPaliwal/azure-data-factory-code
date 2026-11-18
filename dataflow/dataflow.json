@@ -79,7 +79,7 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
-				"     format: 'parquet') ~> sink"
+				"     format: 'delimited') ~> sink"
 			]
 		}
 	}
