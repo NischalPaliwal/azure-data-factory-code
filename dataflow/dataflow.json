@@ -12,7 +12,19 @@
 					"name": "source"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Stage",
+						"type": "DatasetReference"
+					},
+					"name": "sink",
+					"rejectedDataLinkedService": {
+						"referenceName": "AzureDataLakeStorage",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
 			"transformations": [
 				{
 					"name": "castDateCols"
@@ -58,7 +70,16 @@
 				"     errors: true) ~> castDateCols",
 				"castDateCols aggregate(groupBy({Row ID}),",
 				"     each(match(name!='Row ID'), $$ = first($$))) ~> Deduplicate",
-				"Deduplicate filter(!isNull({Row ID}) && !isNull({Order ID}) && !isNull({Customer ID}) && !isNull({Product ID})) ~> filterNulls"
+				"Deduplicate filter(!isNull({Row ID}) && !isNull({Order ID}) && !isNull({Customer ID}) && !isNull({Product ID})) ~> filterNulls",
+				"filterNulls sink(allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1) ~> sink"
 			]
 		}
 	}
