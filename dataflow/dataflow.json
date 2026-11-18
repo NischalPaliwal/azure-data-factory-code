@@ -1,0 +1,65 @@
+{
+	"name": "dataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Source_Data_Files",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "castDateCols"
+				},
+				{
+					"name": "Deduplicate"
+				},
+				{
+					"name": "filterNulls"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Row ID} as integer,",
+				"          {Order ID} as string,",
+				"          {Order Date} as string,",
+				"          {Ship Date} as string,",
+				"          {Ship Mode} as string,",
+				"          {Customer ID} as string,",
+				"          {Customer Name} as string,",
+				"          Segment as string,",
+				"          Country as string,",
+				"          City as string,",
+				"          State as string,",
+				"          {Postal Code} as integer,",
+				"          Region as string,",
+				"          {Product ID} as string,",
+				"          Category as string,",
+				"          {Sub-Category} as string,",
+				"          {Product Name} as string,",
+				"          Sales as double,",
+				"          Quantity as integer,",
+				"          Discount as double,",
+				"          Profit as double",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     ignoreNoFilesFound: false) ~> source",
+				"source cast(output(",
+				"          {Order Date} as date 'MM/dd/yyyy',",
+				"          {Ship Date} as date 'MM/dd/yyyy'",
+				"     ),",
+				"     errors: true) ~> castDateCols",
+				"castDateCols aggregate(groupBy({Row ID}),",
+				"     each(match(name!='Row ID'), $$ = first($$))) ~> Deduplicate",
+				"Deduplicate filter(!isNull({Row ID}) && !isNull({Order ID}) && !isNull({Customer ID}) && !isNull({Product ID})) ~> filterNulls"
+			]
+		}
+	}
+}
