@@ -1,0 +1,15 @@
+{
+	"name": "nischal-test-factory",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "072c2dff-153b-4917-8ead-3b40b7a7f4ad",
+		"tenantId": "30dbfd9d-4499-4af5-8a64-5282a15a47b6"
+	}
+}
