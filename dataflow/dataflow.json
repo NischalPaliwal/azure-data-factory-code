@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Stage",
+						"referenceName": "Bronze",
 						"type": "DatasetReference"
 					},
 					"name": "sink",
