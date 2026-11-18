@@ -73,13 +73,13 @@
 				"Deduplicate filter(!isNull({Row ID}) && !isNull({Order ID}) && !isNull({Customer ID}) && !isNull({Product ID})) ~> filterNulls",
 				"filterNulls sink(allowSchemaDrift: false,",
 				"     validateSchema: true,",
-				"     format: 'parquet',",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 1) ~> sink"
+				"     saveOrder: 1,",
+				"     format: 'parquet') ~> sink"
 			]
 		}
 	}
