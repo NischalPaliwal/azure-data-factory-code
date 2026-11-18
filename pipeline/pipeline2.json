@@ -159,13 +159,20 @@
 										"value": "Success",
 										"type": "String"
 									},
-									"RowsCopied": {
-										"value": "@activity('Copy_File').output.rowsCopied",
+									"DataWrittenBytes": {
+										"value": {
+											"value": "@activity('Copy_File').output.dataWritten",
+											"type": "Expression"
+										},
 										"type": "Int64"
 									},
 									"ErrorMessage": {
-										"value": "",
+										"value": null,
 										"type": "String"
+									},
+									"FilesWritten": {
+										"value": "@activity('Copy_File').output.filesWritten",
+										"type": "Int32"
 									}
 								}
 							},
@@ -212,13 +219,17 @@
 										"value": "Failed",
 										"type": "String"
 									},
-									"RowsCopied": {
-										"value": "",
+									"DataWrittenBytes": {
+										"value": null,
 										"type": "Int64"
 									},
 									"ErrorMessage": {
 										"value": "@activity('Copy_File').error.message",
 										"type": "String"
+									},
+									"FilesWritten": {
+										"value": null,
+										"type": "Int32"
 									}
 								}
 							},
