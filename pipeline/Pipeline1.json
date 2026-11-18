@@ -19,7 +19,13 @@
 						"referenceName": "Source_Data_Files",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"exists",
+						"childItems",
+						"itemName",
+						"itemType",
+						"lastModified"
+					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
 						"recursive": true,
