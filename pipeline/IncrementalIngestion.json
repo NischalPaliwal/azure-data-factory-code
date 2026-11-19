@@ -25,7 +25,7 @@
 						"referenceName": "WaterMark",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -51,7 +51,7 @@
 						"referenceName": "OrdersTable",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": false
+					"firstRowOnly": true
 				}
 			},
 			{
